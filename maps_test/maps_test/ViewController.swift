@@ -6,6 +6,8 @@ class ViewController : UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var greenOne: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
@@ -16,6 +18,10 @@ class ViewController : UIViewController, UISearchBarDelegate {
         locationManager.requestLocation()
          */
         fetchStadiumsOnMap(stadiums)
+        greenOne.backgroundColor = .green
+        greenOne.layer.cornerRadius = 10
+        //greenOne.layer.borderWidth = 0
+        //greenOne.layer.borderColor = UIColor.black.cgColor
     }//viewDidLoad func
     
     func checkLocationServices() {

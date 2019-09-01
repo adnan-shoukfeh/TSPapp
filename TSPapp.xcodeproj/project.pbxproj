@@ -15,6 +15,7 @@
 		22ECE44C231B7DD400EA288B /* OptionLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECE44B231B7DD400EA288B /* OptionLauncher.swift */; };
 		22ECE44E231B8D9300EA288B /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECE44D231B8D9300EA288B /* OptionsCell.swift */; };
 		22ECE450231B8E3100EA288B /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECE44F231B8E3100EA288B /* BaseCell.swift */; };
+		22ECE452231BAFB500EA288B /* StackViewColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECE451231BAFB500EA288B /* StackViewColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		22ECE44B231B7DD400EA288B /* OptionLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionLauncher.swift; sourceTree = "<group>"; };
 		22ECE44D231B8D9300EA288B /* OptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCell.swift; sourceTree = "<group>"; };
 		22ECE44F231B8E3100EA288B /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		22ECE451231BAFB500EA288B /* StackViewColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				22ECE44B231B7DD400EA288B /* OptionLauncher.swift */,
 				22ECE44D231B8D9300EA288B /* OptionsCell.swift */,
 				22ECE44F231B8E3100EA288B /* BaseCell.swift */,
+				22ECE451231BAFB500EA288B /* StackViewColor.swift */,
 			);
 			path = TSPapp;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22ECE44E231B8D9300EA288B /* OptionsCell.swift in Sources */,
+				22ECE452231BAFB500EA288B /* StackViewColor.swift in Sources */,
 				22ECE41E2314D52400EA288B /* ViewController.swift in Sources */,
 				22ECE41C2314D52400EA288B /* AppDelegate.swift in Sources */,
 				22ECE450231B8E3100EA288B /* BaseCell.swift in Sources */,

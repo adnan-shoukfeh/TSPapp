@@ -10,7 +10,7 @@ import UIKit
 
 class OptionsCell: BaseCell {
     
-    let nameLabel: UILabel = {
+    let optionButton: UILabel = {
         let label = UILabel()
         label.text = "FILLER"
         return label
@@ -19,7 +19,7 @@ class OptionsCell: BaseCell {
     override func setUpViews() {
         super.setUpViews()
         backgroundColor = UIColor.blue
-        addSubview(nameLabel)
+        addSubview(optionButton)
     
     }
 }
