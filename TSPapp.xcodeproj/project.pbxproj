@@ -12,6 +12,9 @@
 		22ECE4212314D52400EA288B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22ECE41F2314D52400EA288B /* Main.storyboard */; };
 		22ECE4232314D52700EA288B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22ECE4222314D52700EA288B /* Assets.xcassets */; };
 		22ECE4262314D52700EA288B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22ECE4242314D52700EA288B /* LaunchScreen.storyboard */; };
+		22ECE44C231B7DD400EA288B /* OptionLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECE44B231B7DD400EA288B /* OptionLauncher.swift */; };
+		22ECE44E231B8D9300EA288B /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECE44D231B8D9300EA288B /* OptionsCell.swift */; };
+		22ECE450231B8E3100EA288B /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECE44F231B8E3100EA288B /* BaseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		22ECE4222314D52700EA288B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22ECE4252314D52700EA288B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22ECE4272314D52700EA288B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22ECE44B231B7DD400EA288B /* OptionLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionLauncher.swift; sourceTree = "<group>"; };
+		22ECE44D231B8D9300EA288B /* OptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCell.swift; sourceTree = "<group>"; };
+		22ECE44F231B8E3100EA288B /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				22ECE4222314D52700EA288B /* Assets.xcassets */,
 				22ECE4242314D52700EA288B /* LaunchScreen.storyboard */,
 				22ECE4272314D52700EA288B /* Info.plist */,
+				22ECE44B231B7DD400EA288B /* OptionLauncher.swift */,
+				22ECE44D231B8D9300EA288B /* OptionsCell.swift */,
+				22ECE44F231B8E3100EA288B /* BaseCell.swift */,
 			);
 			path = TSPapp;
 			sourceTree = "<group>";
@@ -135,8 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22ECE44E231B8D9300EA288B /* OptionsCell.swift in Sources */,
 				22ECE41E2314D52400EA288B /* ViewController.swift in Sources */,
 				22ECE41C2314D52400EA288B /* AppDelegate.swift in Sources */,
+				22ECE450231B8E3100EA288B /* BaseCell.swift in Sources */,
+				22ECE44C231B7DD400EA288B /* OptionLauncher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
