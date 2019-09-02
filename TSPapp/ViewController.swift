@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UISearchBarDelegate {
 
     var addOrCancel = UIStackView()
     var currentAnnotation = MKPointAnnotation()
@@ -102,14 +102,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
     //declare outside in order to access in several functions
     let mapInBackground = UIView()
     
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 50, left: 10, bottom: 10, right: 10)
-        //layout.itemSize = CGSize(width: 10, height: 10)
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.white
-        return cv
-    }()
     
     let stackView = UIStackView()
     
@@ -131,7 +123,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
             //let height: CGFloat = 200
             let height: CGFloat = window.frame.height * 0.22
             let y = window.frame.height - height
-            //collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
+
             stackView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
             stackView.addBackground(color: .white)
             stackView.axis = .horizontal
@@ -144,9 +136,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
             
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.mapInBackground.alpha = 1
-                
-                //self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+
                 self.stackView.frame = CGRect(x: 0, y: y, width: self.stackView.frame.width, height: self.stackView.frame.height)
+
             }, completion: nil)
             
             
@@ -159,7 +151,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
             self.mapInBackground.alpha = 0
             
             if let window = UIApplication.shared.keyWindow {
-                //self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.width)
                 self.stackView.frame = CGRect(x: 0, y: window.frame.height, width: self.stackView.frame.width, height: self.stackView.frame.width)
             }
             
@@ -187,23 +178,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
     @IBOutlet weak var mapView: MKMapView!
     //@IBOutlet weak var addButton: UIButton!
     //@IBOutlet weak var cancelButton: UIButton!
-    let cellId = "cellId"
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //return CGSize(width: collectionView.frame.width, height: 50)
-        return CGSize(width: 50, height: 50)
-        //CHANGE HEIGHT^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        
-    }
     
     
     override func viewDidLoad() {
@@ -212,19 +187,17 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
         //arrangeStackView()
         let addButton = UIButton()
         addButton.setTitle("ADD", for: .normal)
-        addButton.backgroundColor = UIColor(red: 83, green: 215, blue: 105, alpha: 0)
+        addButton.backgroundColor = UIColor(red: 83/255, green: 215/255, blue: 105/255, alpha: 1)
         addButton.layer.cornerRadius = 10
         let cancelButton = UIButton()
         cancelButton.setTitle("CANCEL", for: .normal)
-        cancelButton.backgroundColor = UIColor(red: 248, green: 73, blue: 76, alpha: 0)
+        cancelButton.backgroundColor = UIColor(red: 248/255, green: 73/255, blue: 76/255, alpha: 1)
         cancelButton.layer.cornerRadius = 10
         stackView.addArrangedSubview(addButton)
         stackView.addArrangedSubview(cancelButton)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
 
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        collectionView.register(OptionsCell.self, forCellWithReuseIdentifier: cellId)
     }
 
 
