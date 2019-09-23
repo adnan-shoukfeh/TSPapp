@@ -10,7 +10,7 @@ import UIKit
 
 class AddDestinationViewController: UIViewController {
     
-    let locationLabel = UILabel()
+    var locationLabel = UILabel()
     let cancelButton = UIButton()
     let goButton = UIButton()
     
@@ -26,8 +26,8 @@ class AddDestinationViewController: UIViewController {
         goButton.layer.cornerRadius = 10
         
         locationLabel.textColor = .white
-        locationLabel.text = "Location Title"
-        locationLabel.font = UIFont(name: "Symbol", size: 20.0)
+        //locationLabel.text = "Location Title"
+        locationLabel.font = UIFont(name: "Symbol", size: 30.0)
         
         view.addSubview(locationLabel)
         view.addSubview(cancelButton)
@@ -53,7 +53,7 @@ class AddDestinationViewController: UIViewController {
         locationLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2).isActive = true
         
         //set Go button constraints
-        view.bottomAnchor.constraint(equalToSystemSpacingBelow: goButton.bottomAnchor, multiplier: 2).isActive = true
+        view.bottomAnchor.constraint(equalToSystemSpacingBelow: goButton.bottomAnchor, multiplier: 3).isActive = true
         goButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2).isActive = true
         view.trailingAnchor.constraint(equalToSystemSpacingAfter: goButton.trailingAnchor, multiplier: 2).isActive = true
         goButton.topAnchor.constraint(equalToSystemSpacingBelow: locationLabel.bottomAnchor, multiplier: 5).isActive = true
@@ -64,9 +64,8 @@ class AddDestinationViewController: UIViewController {
         view.trailingAnchor.constraint(equalToSystemSpacingAfter: cancelButton.trailingAnchor, multiplier: 2).isActive = true
         cancelButton.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true
         
+        //cancelButton.addTarget(self, action: #selector(), for: <#T##UIControl.Event#>)
         
-        
-        
-        
-    }
+        }
+    
 }

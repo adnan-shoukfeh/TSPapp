@@ -10,9 +10,12 @@ import UIKit
 import MapKit
 
 class ViewController: UIViewController, UISearchBarDelegate {
-    
+    let searchBar = UISearchBar()
     let mapView = MKMapView()
+    var currentAnnotation = MKPointAnnotation()
+    var currentLocationName = String()
     
+    let background = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +23,11 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
         addMapAndConstraints()
         addSearchBarAndConstraints()
-        showPopUp()
         
     }
     
     func addSearchBarAndConstraints() {
-        let searchBar = UISearchBar()
+        
         let safeAreaView = view.safeAreaLayoutGuide
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = " Enter location..."
@@ -41,10 +43,112 @@ class ViewController: UIViewController, UISearchBarDelegate {
         searchBar.leadingAnchor.constraint(equalToSystemSpacingAfter: mapView.leadingAnchor, multiplier: 1).isActive = true
         mapView.trailingAnchor.constraint(equalToSystemSpacingAfter: searchBar.trailingAnchor, multiplier: 1).isActive = true
         
+        //self.navigationItem.titleView = searchBar
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){//} textDidChange textSearched: String) {
+        //let searchController = UISearchController(searchResultsController: nil)
+        //searchController.searchBar.delegate = self
+        //present(searchController, animated: true, completion: nil)
         
+        //ignore user
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        //activity indicator
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .gray
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
+        self.view.addSubview(activityIndicator)
+        
+        //hide search bar and keyboard
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+        
+        //create search request
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        //searchRequest.naturalLanguageQuery = textSearched
+        
+        //start a search based on above request
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        
+        //either get response or error
+        activeSearch.start { (response, error) in
+            
+            //deal with left over activity indicator
+            activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            
+            if response == nil {
+                //PRINT ALERT LATER
+                print("Error")
+            } else {
+                //remove annotations
+                /*
+                 let annotations = self.mapView.annotations
+                 self.mapView.removeAnnotations(annotations)
+                 */
+                
+                //get data
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                
+                //create new annotation based on data
+                let annotation = MKPointAnnotation()
+                annotation.title = searchBar.text
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+                self.currentAnnotation = annotation
+                self.mapView.addAnnotation(annotation)
+                
+                self.currentLocationName = annotation.title!
+                
+                //zoom in
+                let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                self.mapView.setRegion(region, animated: true)
+                
+                //present option to either add or cancel
+                self.userChoice()
+                //let optionsLauncher = OptionsLauncher()
+                //optionsLauncher.userChoice()
+                
+            }
+        }//activeSearch
+        
+    }//func
+    
+    func userChoice() {
+        //allow user to choose whether to add or cancel
+        if let window = UIApplication.shared.keyWindow {
+            background.backgroundColor = UIColor(white: 0, alpha: 0.1)
+            background.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
+            
+            window.addSubview(background)
+            
+            background.frame = window.frame
+            background.alpha = 0
+            
+            DestinationViewController.cancelButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+            DestinationViewController.locationLabel.text = currentLocationName
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.background.alpha = 1
+                self.showPopUp()
+            }, completion: nil)
+        }
+        
+    }
+    
+    @objc func handleDismiss() {
+        UIView.animate(withDuration: 0.5) {
+            self.background.alpha = 0
+            self.DestinationViewController.view.removeFromSuperview()
+        }
+        self.mapView.removeAnnotation(currentAnnotation)
     }
     
     
@@ -59,9 +163,10 @@ class ViewController: UIViewController, UISearchBarDelegate {
 
     }
     
+    let DestinationViewController = AddDestinationViewController()
+
     func showPopUp() {
-        
-        let DestinationViewController = AddDestinationViewController()
+        //let DestinationViewController = AddDestinationViewController()
         addChild(DestinationViewController)
         view.addSubview(DestinationViewController.view)
         DestinationViewController.didMove(toParent: self)
@@ -71,8 +176,10 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
         view.trailingAnchor.constraint(equalToSystemSpacingAfter: DestinationViewController.view.trailingAnchor, multiplier: 1).isActive = true
         
-        view.bottomAnchor.constraint(equalToSystemSpacingBelow: DestinationViewController.view.bottomAnchor, multiplier: 1).isActive = true
+        view.bottomAnchor.constraint(equalToSystemSpacingBelow: DestinationViewController.view.bottomAnchor, multiplier: 3).isActive = true
     }
+    
+    
 
 }
 

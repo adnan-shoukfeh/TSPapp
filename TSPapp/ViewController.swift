@@ -118,7 +118,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
             
             //window.addSubview(collectionView)
             window.addSubview(stackView)
-
+            
             
             //let height: CGFloat = 200
             let height: CGFloat = window.frame.height * 0.22
