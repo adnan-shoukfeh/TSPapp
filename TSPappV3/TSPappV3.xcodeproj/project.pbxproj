@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		228DA76923B2D844003A2183 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DA76823B2D844003A2183 /* LocationSearchTable.swift */; };
 		22D90BC323B0BE510062EF9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D90BC223B0BE510062EF9D /* AppDelegate.swift */; };
 		22D90BC523B0BE510062EF9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D90BC423B0BE510062EF9D /* SceneDelegate.swift */; };
 		22D90BC723B0BE510062EF9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D90BC623B0BE510062EF9D /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		228DA76823B2D844003A2183 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		22D90BBF23B0BE510062EF9D /* TSPappV3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSPappV3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D90BC223B0BE510062EF9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22D90BC423B0BE510062EF9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				22D90BCB23B0BE530062EF9D /* Assets.xcassets */,
 				22D90BCD23B0BE530062EF9D /* LaunchScreen.storyboard */,
 				22D90BD023B0BE530062EF9D /* Info.plist */,
+				228DA76823B2D844003A2183 /* LocationSearchTable.swift */,
 			);
 			path = TSPappV3;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				22D90BC723B0BE510062EF9D /* ViewController.swift in Sources */,
 				22D90BC323B0BE510062EF9D /* AppDelegate.swift in Sources */,
 				22D90BC523B0BE510062EF9D /* SceneDelegate.swift in Sources */,
+				228DA76923B2D844003A2183 /* LocationSearchTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
