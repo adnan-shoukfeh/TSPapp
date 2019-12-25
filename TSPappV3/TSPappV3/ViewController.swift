@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //initial set up
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -25,9 +25,9 @@ class ViewController: UIViewController {
         
         
         //set up search results table
-        let locationSearchTable = storyboard!.instantiateViewController(identifier: "LocationSearchTable") as! LocationSearchTable
-        resultSearchController = UISearchController(searchResultsController: LocationSearchTable)
-        resultSearchController?.searchResultsUpdater = LocationSearchTable
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
         
         
         //set up the search bar
@@ -36,11 +36,16 @@ class ViewController: UIViewController {
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
         navigationItem.titleView = resultSearchController?.searchBar
+        //navigationItem.searchController = resultSearchController
         
         
         //configure UISearchController appearance
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
+        
+        
+        //passes handle of the mapView from main ViewController onto locationSearchTable
+        locationSearchTable.mapView = mapView
         
     }
 
