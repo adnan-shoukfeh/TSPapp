@@ -9,11 +9,19 @@
 import UIKit
 import MapKit
 
+protocol HandleMapSearch: class {
+    func dropPinZoomIn(placeMark: MKPlacemark)
+    //implementation for func goes elsewhere
+}
+
 class ViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     @IBOutlet weak var mapView: MKMapView!
-    var resultSearchController:UISearchController? = nil
+    var resultSearchController: UISearchController? = nil
+    var selectedPin: MKPlacemark? = nil
+    var currentAnnotation = MKPointAnnotation()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +55,9 @@ class ViewController: UIViewController {
         //passes handle of the mapView from main ViewController onto locationSearchTable
         locationSearchTable.mapView = mapView
         
+        //wire up protocol
+        locationSearchTable.handleMapSearchDelegate = self
+        
     }
 
 
@@ -62,7 +73,7 @@ extension ViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
             //print("location:: \(location)")
@@ -75,4 +86,34 @@ extension ViewController : CLLocationManagerDelegate {
     
     
 }
+
+
+extension ViewController: HandleMapSearch {
+    func dropPinZoomIn(placeMark: MKPlacemark) {
+        //cache the pin, usefuel when need location later
+        selectedPin = placeMark
+        
+        //clear existing pins
+        mapView.removeAnnotations(mapView.annotations)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placeMark.coordinate
+        annotation.title = placeMark.name
+        
+        if let city = placeMark.locality,
+            let state = placeMark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        
+        mapView.addAnnotation(annotation)
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion(center: placeMark.coordinate, span: span)
+        
+        mapView.setRegion(region, animated: true)
+        
+    }
+} //extension
+
+
 
