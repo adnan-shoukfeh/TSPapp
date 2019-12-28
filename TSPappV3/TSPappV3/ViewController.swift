@@ -95,16 +95,17 @@ class ViewController: UIViewController {
     
     func showPopUp() {
         let margins = view.layoutMarginsGuide
+        let mapMargins = mapView.layoutMarginsGuide
         addChild(DestinationViewController)
         view.addSubview(DestinationViewController.view)
         DestinationViewController.didMove(toParent: self)
         
         DestinationViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        DestinationViewController.view.leadingAnchor.constraint(equalToSystemSpacingAfter: margins.leadingAnchor, multiplier: 1).isActive = true
+        DestinationViewController.view.leadingAnchor.constraint(equalToSystemSpacingAfter: mapMargins.leadingAnchor, multiplier: 1).isActive = true
         
-        margins.trailingAnchor.constraint(equalToSystemSpacingAfter: DestinationViewController.view.trailingAnchor, multiplier: 1).isActive = true
+        mapMargins.trailingAnchor.constraint(equalToSystemSpacingAfter: DestinationViewController.view.trailingAnchor, multiplier: 1).isActive = true
         
-        margins.bottomAnchor.constraint(equalToSystemSpacingBelow: DestinationViewController.view.bottomAnchor, multiplier: 3).isActive = true
+        margins.bottomAnchor.constraint(equalToSystemSpacingBelow: DestinationViewController.view.bottomAnchor, multiplier: 2).isActive = true
     }
 }
 

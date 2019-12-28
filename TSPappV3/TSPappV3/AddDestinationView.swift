@@ -31,7 +31,7 @@ class AddDestinationViewController: UIViewController {
         locationLabel.textColor = .white
         //locationLabel.text = "Location Title"
         locationLabel.font = UIFont(name: "Avenir", size: 30.0)
-        locationLabel.adjustsFontSizeToFitWidth = true
+        //locationLabel.adjustsFontSizeToFitWidth = true
         
         view.addSubview(locationLabel)
         view.addSubview(cancelButton)
@@ -68,9 +68,12 @@ class AddDestinationViewController: UIViewController {
         view.trailingAnchor.constraint(equalToSystemSpacingAfter: cancelButton.trailingAnchor, multiplier: 2).isActive = true
         cancelButton.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true
         
-        //cancelButton.addTarget(self, action: #selector(), for: <#T##UIControl.Event#>)
         
         }
+    
+    func getLabel() -> UILabel {
+        return locationLabel
+    }
     
 }
 
