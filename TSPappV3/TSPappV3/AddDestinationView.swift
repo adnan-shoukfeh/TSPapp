@@ -21,7 +21,7 @@ class AddDestinationViewController: UIViewController {
         
         goButton.setTitle("Add Destination", for: .normal)
         goButton.titleLabel?.textColor = .white
-        goButton.backgroundColor = UIColor(red: 83/255, green: 215/255, blue: 105/255, alpha: 1)
+        goButton.backgroundColor = UIColor(red: 20/255, green: 121/255, blue: 243/255, alpha: 1)
         goButton.layer.cornerRadius = 10
         goButton.titleLabel?.font = UIFont(name: "Avenir", size: 25.0)
         let xButton = #imageLiteral(resourceName: "XButtonTransparent")
@@ -70,10 +70,6 @@ class AddDestinationViewController: UIViewController {
         
         
         }
-    
-    func getLabel() -> UILabel {
-        return locationLabel
-    }
     
 }
 

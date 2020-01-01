@@ -60,7 +60,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tVI-I1-DKZ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="722"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="kqH-2r-BkJ"/>
                                 </connections>
@@ -68,7 +68,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tVI-I1-DKZ" secondAttribute="bottom" id="4jK-Bi-XNA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tVI-I1-DKZ" secondAttribute="bottom" constant="52" id="O6t-4w-ZWi"/>
                             <constraint firstItem="tVI-I1-DKZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jMT-JC-dbZ"/>
                             <constraint firstItem="tVI-I1-DKZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mee-gj-eIC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tVI-I1-DKZ" secondAttribute="trailing" id="w9t-ck-Vyb"/>
