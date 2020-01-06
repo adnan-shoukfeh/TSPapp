@@ -14,6 +14,10 @@ protocol HandleMapSearch: class {
     //implementation for func goes elsewhere
 }
 
+//
+//MAP DOES NOT RELOAD AFTER ASKING FOR LOCATION PERMISSION!!!!!!!
+//FIX. THIS.
+//
 class ViewController: UIViewController {
     
     let locationManager = CLLocationManager()
@@ -24,8 +28,9 @@ class ViewController: UIViewController {
     var currentLocationName = String()
     let background = UIView()
     let DestinationViewController = AddDestinationViewController()
-    let BottomBarViewController = AddBottomBarViewController()
-
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var calcButton: UIButton!
+    @IBOutlet weak var stackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +54,7 @@ class ViewController: UIViewController {
         searchBar.placeholder = "Search for places"
         navigationItem.titleView = resultSearchController?.searchBar
         //navigationItem.searchController = resultSearchController
-        
+        searchBar.backgroundColor = .darkGray
         
         //configure UISearchController appearance
         resultSearchController?.hidesNavigationBarDuringPresentation = false
@@ -62,8 +67,11 @@ class ViewController: UIViewController {
         //wire up protocol
         locationSearchTable.handleMapSearchDelegate = self
         
-        addBottomBar()
+        
+        editBottomBar()
     }
+    
+    
     
     func userChoice() {
         //allow user to choose whether to add or cancel
@@ -95,59 +103,36 @@ class ViewController: UIViewController {
 
     
     func showPopUp() {
-        let margins = view.layoutMarginsGuide
         let mapMargins = mapView.layoutMarginsGuide
         addChild(DestinationViewController)
         view.addSubview(DestinationViewController.view)
         DestinationViewController.didMove(toParent: self)
-        
         DestinationViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
         DestinationViewController.view.leadingAnchor.constraint(equalToSystemSpacingAfter: mapMargins.leadingAnchor, multiplier: 1).isActive = true
         
         mapMargins.trailingAnchor.constraint(equalToSystemSpacingAfter: DestinationViewController.view.trailingAnchor, multiplier: 1).isActive = true
         
-        margins.bottomAnchor.constraint(equalToSystemSpacingBelow: DestinationViewController.view.bottomAnchor, multiplier: 2).isActive = true
+        mapMargins.bottomAnchor.constraint(equalToSystemSpacingBelow: DestinationViewController.view.bottomAnchor, multiplier: 2).isActive = true
     }
     
-    func addBottomBar() {
-        let margins = view.layoutMarginsGuide
-        let mapMargins = mapView.layoutMarginsGuide
-        let backgroundColor = #imageLiteral(resourceName: "darkGrayBackground")
-        let greyBackground = UIImageView(image: backgroundColor)
-        
-        view.addSubview(greyBackground)
-        addChild(BottomBarViewController)
-        view.addSubview(BottomBarViewController.view)
-        BottomBarViewController.didMove(toParent: self)
-        
-        BottomBarViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        greyBackground.translatesAutoresizingMaskIntoConstraints = false
-        
-        BottomBarViewController.view.topAnchor.constraint(equalToSystemSpacingBelow: mapMargins.bottomAnchor, multiplier: 0).isActive = true
-        
-        margins.bottomAnchor.constraint(equalToSystemSpacingBelow: BottomBarViewController.view.bottomAnchor, multiplier: 0).isActive = true
-        
-        BottomBarViewController.view.leadingAnchor.constraint(equalToSystemSpacingAfter: margins.leadingAnchor, multiplier: 0).isActive = true
-        
-        margins.trailingAnchor.constraint(equalToSystemSpacingAfter: BottomBarViewController.view.trailingAnchor, multiplier: 0).isActive = true
-        
-        
-        //ADD BACKGROUND COLOR
-        greyBackground.contentMode = .scaleAspectFill
-        greyBackground.clipsToBounds = true
-        
-        greyBackground.topAnchor.constraint(equalToSystemSpacingBelow: mapMargins.bottomAnchor, multiplier: 0).isActive = true
-        
-        view.bottomAnchor.constraint(equalToSystemSpacingBelow: greyBackground.bottomAnchor, multiplier: 0).isActive = true
-        
-        greyBackground.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 0).isActive = true
-        
-        view.trailingAnchor.constraint(equalToSystemSpacingAfter: greyBackground.trailingAnchor, multiplier: 0).isActive = true
-        
-        
+    
+    func editBottomBar() {
+        //fix buttons
+        resetButton.layer.cornerRadius = 10
+        calcButton.layer.cornerRadius = 10
+    }
+    
+    
+    //deal with navigation bar coloring
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
     }
 }
-
 
 extension ViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
